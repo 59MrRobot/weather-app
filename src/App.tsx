@@ -26,8 +26,6 @@ const App: React.FC = () => {
       .catch((err) => console.log(err));
   }
 
-  console.log(forecast);
-
   return (
     <div className="container">
       <h1>Welcome to Weather App</h1>

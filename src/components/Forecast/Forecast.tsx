@@ -17,6 +17,7 @@ const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satu
 export const Forecast: React.FC<Props> = React.memo(
   ({ forecast }) => {
     const currentDay = new Date().getDay();
+    console.log(currentDay);
 
     const forecastDays = WEEK_DAYS.slice(currentDay, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, currentDay));
 
