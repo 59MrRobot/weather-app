@@ -13,7 +13,7 @@ I have built a weather app that uses two API, one for the list of cities (https:
 ## Screenshots:
 
 ![App screenshot - forecast accordion collapsed](weather-screenshot1.png)
-![App screenshot - forecast accordion expanded](weather-screenshot1.png)
+![App screenshot - forecast accordion expanded](weather-screenshot2.png)
 
 ## Technologies:
 
