@@ -12,8 +12,9 @@ I have built a weather app that uses two API, one for the list of cities (https:
 
 ## Screenshots:
 
-![App screenshot - forecast accordion collapsed](weather-screenshot1.png)
-![App screenshot - forecast accordion expanded](weather-screenshot2.png)
+![App screenshot - Home](home.png)
+![App screenshot - Forecast Accordion Collapsed](forecast.png)
+![App screenshot - Forecast Accordion Expanded](forecast-expanded.png)
 
 ## Technologies:
 
@@ -21,8 +22,10 @@ I have built a weather app that uses two API, one for the list of cities (https:
 - Typescript
 - HTML
 - SCSS
+- Redux
 - React Accessible Accordion
 - React Select Async Paginate
+- MUI
 
 ## Setup:
 

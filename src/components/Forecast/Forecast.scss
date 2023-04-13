@@ -7,14 +7,17 @@
 
 .daily-item {
   display: flex;
+  align-items: center;
+
+  height: 40px;
+  margin: 12px 5px;
+  padding: 5px 20px;
+
   background-color: $grey-light;
   border-radius: 15px;
-  height: 40px;
-  margin: 5px;
-  align-items: center;
-  cursor: pointer;
+
   font-size: 14px;
-  padding: 5px 20px;
+  cursor: pointer;
 }
 
 .icon {
@@ -49,13 +52,26 @@
   column-gap: 15px;
   flex: 1 1;
   grid-template-columns: auto auto;
+
   padding: 5px 15px;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 468px) {
+    font-size: 14px;
+  }
 
   &-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 30px;
+
+    @media (max-width: 468px) {
+      height: 24px;
+    }
   }
 
   & label:first-child {

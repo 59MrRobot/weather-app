@@ -1,39 +1,42 @@
-import React, { useState } from 'react';
-import { WEATHER_API_URL } from './api';
+import React from 'react';
 import './App.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import { Forecast } from './components/Forecast';
 import { Search } from './components/Search';
+import { useDispatch, useSelector } from 'react-redux';
+import { reset } from './redux/weatherRedux';
+import { getCurrentWeather, getForecast } from './redux/apiCalls';
+import ClearIcon from '@mui/icons-material/Clear';
 
 const App: React.FC = () => {
-  const [currentWeather, setCurrentWeather] = useState();
-  const [forecast, setForecast] = useState();
+  const currentWeather = useSelector((state: any) => state.currentWeather);
+  const forecast = useSelector((state: any) => state.forecast);
+  const dispatch = useDispatch();
 
   const handleOnSearchChange = (searchData: SearchData) => {
     const [latitude, longitude] = searchData.value.split(' ');
 
-    const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`);
-    const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`);
-
-    Promise.all([currentWeatherFetch, forecastFetch])
-      .then(async (response) => {
-        const weatherResponse = await response[0].json();
-        const forecastResponse = await response[1].json();
-
-        setCurrentWeather({city: searchData.label, ...weatherResponse});
-        setForecast({city: searchData.label, ...forecastResponse});
-      })
-      .catch((err) => console.log(err));
+    getCurrentWeather(dispatch, latitude, longitude, searchData.label);
+    getForecast(dispatch, latitude, longitude, searchData.label);
   }
 
   return (
     <div className="container">
-      <h1>Welcome to Weather App</h1>
+      <h1 className="container__title">Welcome to Weather App</h1>
+
       <Search onSearchChange={handleOnSearchChange} />
 
-      {currentWeather && <CurrentWeather currentWeather={currentWeather} />}
+      <div
+        className="container__clear"
+        style={{ textAlign: "center", marginTop: "8px", cursor: "pointer"}}
+        onClick={() => dispatch(reset())}
+      >
+        {currentWeather && <ClearIcon />}
+      </div>
 
-      {forecast && <Forecast forecast={forecast} />}
+      {currentWeather && <CurrentWeather />}
+
+      {forecast && <Forecast />}
     </div>
   );
 }

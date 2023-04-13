@@ -1,4 +1,13 @@
 body {
-  font-family: "Roboto", Arial;
-  background-color: #D5D4D4;
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Fahkwang", sans-serif;
+}
+
+h1,
+body {
+  margin: 0;
 }

@@ -1,12 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import './CurrentWeather.scss';
 
-interface Props {
-  currentWeather: CurrentWeather;
-}
-
-export const CurrentWeather: React.FC<Props> = React.memo(
-  ({ currentWeather }) => {
+export const CurrentWeather: React.FC = React.memo(
+  () => {
+    const currentWeather: CurrentWeather = useSelector((state: any) => state.currentWeather);
     const {
       city,
       main,
@@ -18,19 +16,20 @@ export const CurrentWeather: React.FC<Props> = React.memo(
       <div className="current-weather">
         <div className="top">
           <div>
-            <p className="city">{city}</p>
+            <p className="current-weather__city">{city}</p>
             <p className="current-weather__description">{weather[0].main}</p>
           </div>
 
-          <img 
+          <img
             src={`icons/${weather[0].icon}.png`}
-            alt="weather" 
+            alt="weather"
             className="current-weather__icon" 
           />
         </div>
 
         <div className="bottom">
           <p className="temperature">{Math.round(main.temp)}°C</p>
+          
           <div className="parameter">
             <div className="parameter__row">
               <span className="parameter__label">Details</span>

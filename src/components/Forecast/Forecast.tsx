@@ -6,27 +6,24 @@ import {
   AccordionItemPanel,
   AccordionItemButton
 } from 'react-accessible-accordion';
+import { useSelector } from 'react-redux';
 import './Forecast.scss';
-
-interface Props {
-  forecast: Forecast;
-}
 
 const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-export const Forecast: React.FC<Props> = React.memo(
-  ({ forecast }) => {
+export const Forecast: React.FC = React.memo(
+  () => {
+    const forecast: Forecast = useSelector((state: any) => state.forecast);
     const currentDay = new Date().getDay();
-    console.log(currentDay);
 
     const forecastDays = WEEK_DAYS.slice(currentDay, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, currentDay));
 
     return (
       <>
-        <label className="title">Daily</label>
+        <label className="title" style={{ marginLeft: "5px"}}>Daily</label>
 
         <Accordion allowZeroExpanded>
-          {forecast.list.splice(0, 7).map((item, index) => (
+          {[...forecast.list].splice(0, 7).map((item, index) => (
             <AccordionItem key={index}>
               <AccordionItemHeading>
                 <AccordionItemButton>
@@ -51,7 +48,7 @@ export const Forecast: React.FC<Props> = React.memo(
 
               <AccordionItemPanel>
                 <div className="daily-details-grid">
-                <div className="daily-details-grid-item">
+                  <div className="daily-details-grid-item">
                     <label>Feels Like:</label>
                     <label>{Math.round(item.main.feels_like)}°C</label>
                   </div>
